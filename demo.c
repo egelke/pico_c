@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "main.h"
+#include "demo.h"
 #include "pico/stdlib.h"
 #include "egk_i2c_pico.h"
 #include "egk_time.h"

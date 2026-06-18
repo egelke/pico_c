@@ -1,7 +1,7 @@
 
-#include "../../main.h"
+#include "../../incl/error.h"
 
-#include "../../hal/incl/egk_time.h"
+#include "egk_time.h"
 #include "egk_shtc3.h"
 
 #include <stdlib.h>

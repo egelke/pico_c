@@ -10,6 +10,6 @@ target_include_directories(shtc3
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/incl
 )
 
-#target_link_libraries(shtc3
-#    PRIVATE hal_pico
-#)
+target_link_libraries(shtc3
+    PUBLIC hal
+)

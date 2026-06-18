@@ -36,28 +36,27 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pico main.c)
+add_executable(demo demo.c)
 add_subdirectory(shtc3)
 add_subdirectory(hal)
 
-pico_set_program_name(pico "pico")
-pico_set_program_version(pico "0.1")
+pico_set_program_name(demo "demo")
+pico_set_program_version(demo "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(pico 1)
-pico_enable_stdio_usb(pico 0)
+pico_enable_stdio_uart(demo 1)
+pico_enable_stdio_usb(demo 0)
 
 # Add the standard include files to the build
-target_include_directories(pico PRIVATE
+target_include_directories(demo PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(pico 
-        pico_stdlib
+target_link_libraries(demo 
         hal_pico
         shtc3
         )
 
-pico_add_extra_outputs(pico)
+pico_add_extra_outputs(demo)
 
