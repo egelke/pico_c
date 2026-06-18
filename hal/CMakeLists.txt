@@ -2,8 +2,8 @@
 
 # Define static library target
 add_library(hal_pico STATIC
-    egk_i2c_pico.c
-    egk_time_pico.c
+    pico/egk_i2c.c
+    pico/egk_time.c
 )
 
 # Expose include directory to users of the library

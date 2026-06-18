@@ -1,5 +1,5 @@
 
-#include "../main.h"
+#include "../../main.h"
 
 #include "egk_i2c_pico.h"
 #include "pico/stdlib.h"

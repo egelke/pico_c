@@ -1,4 +1,4 @@
-#include "../main.h"
+#include "../../main.h"
 
 #include "egk_time.h"
 #include "pico/stdlib.h"
