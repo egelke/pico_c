@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../hal/egk_i2c.h"
+#include "../../hal/incl/egk_i2c.h"
 
 #ifdef __cplusplus
 extern "C" {

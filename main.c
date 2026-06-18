@@ -3,9 +3,9 @@
 
 #include "main.h"
 #include "pico/stdlib.h"
-#include "hal/egk_i2c_pico.h"
-#include "hal/egk_time.h"
-#include "shtc3/egk_shtc3.h"
+#include "egk_i2c_pico.h"
+#include "egk_time.h"
+#include "egk_shtc3.h"
 
 #define SENSOR_I2C_PORT                 (i2c0)
 #define SENSOR_SDA_PIN                  (8)

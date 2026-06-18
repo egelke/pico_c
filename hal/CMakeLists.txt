@@ -8,7 +8,7 @@ add_library(hal_pico STATIC
 
 # Expose include directory to users of the library
 target_include_directories(hal_pico
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/incl
 )
 
 target_link_libraries(hal_pico
