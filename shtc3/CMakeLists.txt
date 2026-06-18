@@ -11,5 +11,6 @@ target_include_directories(shtc3
 )
 
 target_link_libraries(shtc3
-    PUBLIC hal
+    egk
+    hal
 )

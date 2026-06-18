@@ -35,11 +35,16 @@ project(pico C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
+add_library(egk INTERFACE)
+target_include_directories(egk
+    INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/incl
+)
 
-add_executable(demo demo.c)
 add_subdirectory(shtc3)
 add_subdirectory(hal)
 
+#Executable 1: demo
+add_executable(demo demo.c)
 pico_set_program_name(demo "demo")
 pico_set_program_version(demo "0.1")
 
@@ -54,6 +59,7 @@ target_include_directories(demo PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(demo 
+        egk
         hal_pico
         shtc3
         )

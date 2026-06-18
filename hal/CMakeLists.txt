@@ -20,4 +20,5 @@ target_include_directories(hal_pico
 target_link_libraries(hal_pico
     hardware_i2c 
     pico_stdlib
+    egk
 )

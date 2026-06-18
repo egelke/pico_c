@@ -1,7 +1,7 @@
 #ifndef DEMO_H
 #define DEMO_H
 
-#include "incl/error.h"
+#include "error.h"
 
 #ifdef __cplusplus
 extern "C" {

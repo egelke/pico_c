@@ -1,5 +1,5 @@
 
-#include "../../incl/error.h"
+#include "error.h"
 
 #include "egk_time.h"
 #include "egk_shtc3.h"
