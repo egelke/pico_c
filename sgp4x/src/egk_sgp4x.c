@@ -39,7 +39,7 @@ int egk_sgp4x_write(egk_sgp4x_t *sensor, uint16_t word)
     uint8_t buffer[2];
     buffer[0] = word >> 8;
     buffer[1] = word & 0xff;
-    return egk_i2c_write(sensor->channel, sensor->addr, buffer, 2);
+    return egk_i2c_write(sensor->channel, sensor->addr, buffer, 2, false);
 }
 
 int egk_sgp4x_read(egk_sgp4x_t *sensor, uint16_t *word) 
@@ -48,7 +48,7 @@ int egk_sgp4x_read(egk_sgp4x_t *sensor, uint16_t *word)
     uint8_t csc;
     uint8_t buffer[3];
 
-    retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, 3);
+    retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, 3, false);
     if (retVal != EGK_OK) return retVal;
 
     if (egk_sgp4x_crc8(buffer, 2) != buffer[2]) return EGK_ERROR_CRC;
@@ -68,7 +68,7 @@ int egk_sgp4x_comm(egk_sgp4x_t *sensor, uint16_t command, uint16_t *resp)
     retVal = egk_sgp4x_read(sensor, resp);
     if (retVal != EGK_OK) return retVal;
 
-    return retVal;
+    return EGK_OK;
 }
 
 int egk_sgp4x_init(egk_sgp4x_t *sensor, egk_i2c_dev_t *channel, uint8_t addr, bool verify) {
@@ -81,7 +81,7 @@ int egk_sgp4x_init(egk_sgp4x_t *sensor, egk_i2c_dev_t *channel, uint8_t addr, bo
         
         retVal = egk_sgp4x_comm(sensor, SGP40_CMD_FEATURE_SET, &id);
         if (retVal != EGK_OK) return retVal;
-        if (id != 0x3220) return EGK_ERROR_GENERIC;
+        if ((id & 0xFF00) != 0x3200) return EGK_ERROR_GENERIC;
     }
 
     return EGK_OK;

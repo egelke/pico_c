@@ -57,7 +57,7 @@ int egk_shtc3_write(egk_shtc3_t *sensor, uint16_t word)
     uint8_t buffer[2];
     buffer[0] = word >> 8;
     buffer[1] = word & 0xff;
-    return egk_i2c_write(sensor->channel, sensor->addr, buffer, 2);
+    return egk_i2c_write(sensor->channel, sensor->addr, buffer, 2, false);
 }
 
 int egk_shtc3_read(egk_shtc3_t *sensor, uint16_t *word1, uint16_t *word2) 
@@ -69,7 +69,7 @@ int egk_shtc3_read(egk_shtc3_t *sensor, uint16_t *word1, uint16_t *word2)
     //csc = egk_shtc3_crc8(buffer, 2);
     //if (csc != buffer[2]) return EGK_ERROR_CRC;
 
-    retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, word2 != NULL ? 6 : 3);
+    retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, word2 != NULL ? 6 : 3, false);
     if (retVal != EGK_OK) return retVal;
 
     if (egk_shtc3_check_crc(buffer) != EGK_OK) return EGK_ERROR_CRC;

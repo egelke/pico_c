@@ -39,20 +39,20 @@ int egk_i2c_init(egk_i2c_dev_t *dev, egk_i2c_mode_t baudrate, int sda_pin, int s
     return EGK_OK;
 }
 
-int egk_i2c_write(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len)
+int egk_i2c_write(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len, bool nostop)
 {
     int retVal;
-    retVal = i2c_write_blocking(dev->i2c, addr, data, len, false);
+    retVal = i2c_write_blocking(dev->i2c, addr, data, len, nostop);
     if (retVal == PICO_ERROR_GENERIC) return EGK_ERROR_GENERIC;
     if (retVal != len) return EGK_ERROR_IO;
 
     return EGK_OK;
 }
 
-int egk_i2c_read(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len)
+int egk_i2c_read(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len, bool nostop)
 {
     int retVal;
-    retVal = i2c_read_blocking(dev->i2c, addr, data, len, false);
+    retVal = i2c_read_blocking(dev->i2c, addr, data, len, nostop);
     if (retVal == PICO_ERROR_GENERIC) return EGK_ERROR_GENERIC;
     if (retVal != len) return EGK_ERROR_IO;
 

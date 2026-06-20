@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,9 +20,9 @@ typedef struct egk_i2c_dev egk_i2c_dev_t;
 
 int egk_i2c_init(egk_i2c_dev_t *dev, egk_i2c_mode_t baudrate, int sda_pin, int scl_pin);
 
-int egk_i2c_write(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len);
+int egk_i2c_write(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len, bool nostop);
 
-int egk_i2c_read(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len);
+int egk_i2c_read(egk_i2c_dev_t *dev, uint8_t addr, uint8_t *data, size_t len, bool nostop);
 
 void egk_i2c_free(egk_i2c_dev_t *dev);
 
