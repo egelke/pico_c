@@ -44,8 +44,16 @@ int main()
     retVal = egk_shtc3_init(&sensor, i2c_dev, SHTC3_I2C_ADDR, true);
     if (retVal != EGK_OK) return error("Failed to initialize SHTC3 sensor", retVal);
 
+    //retVal = egk_shtc3_reset(&sensor);
+    //if (retVal != EGK_OK) return error("Failed to reset SHTC3 sensor", retVal);
+
     while (true)
     {
+        float temperature, humidity;
+        retVal = egk_shtc3_measure(&sensor, &temperature, &humidity);
+        if (retVal != EGK_OK) return error("Failed to measure SHTC3 sensor", retVal);
+        printf("Temperature: %.2f C, Humidity: %.2f %%\n", temperature, humidity);
+
         egk_sleep_ms(1000);
     }
     

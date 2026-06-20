@@ -30,6 +30,12 @@ int egk_i2c_init(egk_i2c_dev_t *dev, egk_i2c_mode_t baudrate, int sda_pin, int s
     gpio_pull_up(sda_pin);
     gpio_pull_up(scl_pin);
 
+    /*
+    uint8_t reset = 0x06; //reset command
+    retVal = i2c_write_blocking(dev->i2c, 0, &reset, 1, false); //send a dummy write to ensure the bus is ready
+    if (retVal == PICO_ERROR_GENERIC) return EGK_ERROR_IO;
+    */
+
     return EGK_OK;
 }
 
