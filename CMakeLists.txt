@@ -40,8 +40,9 @@ target_include_directories(egk
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/incl
 )
 
-add_subdirectory(shtc3)
 add_subdirectory(hal)
+add_subdirectory(shtc3)
+add_subdirectory(sgp4x)
 
 #Executable 1: demo
 add_executable(demo demo.c)
@@ -62,6 +63,7 @@ target_link_libraries(demo
         egk
         hal_pico
         shtc3
+        sgp4x
         )
 
 pico_add_extra_outputs(demo)

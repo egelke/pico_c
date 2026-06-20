@@ -6,6 +6,7 @@
 #include "egk_i2c_pico.h"
 #include "egk_time.h"
 #include "egk_shtc3.h"
+#include "egk_sgp4x.h"
 
 #define SENSOR_I2C_PORT                 (i2c0)
 #define SENSOR_SDA_PIN                  (8)
@@ -30,7 +31,8 @@ int error(const char *msg, int code)
 int main()
 {
     int retVal;
-    egk_shtc3_t sensor;
+    egk_shtc3_t temp_hum;
+    egk_sgp4x_t voc;
     
     stdio_init_all();
     printf("PICO Sensor Kit\n");
@@ -41,18 +43,21 @@ int main()
     retVal = egk_i2c_init(i2c_dev, I2C_MODE_NORMAL, SENSOR_SDA_PIN, SENSOR_SCL_PIN);
     if (retVal != EGK_OK) return error("Failed to initialize I2C", retVal);
 
-    retVal = egk_shtc3_init(&sensor, i2c_dev, SHTC3_I2C_ADDR, true);
-    if (retVal != EGK_OK) return error("Failed to initialize SHTC3 sensor", retVal);
+    retVal = egk_sgp4x_init(&voc, i2c_dev, SHTC3_I2C_ADDR, true);
+    if (retVal != EGK_OK) return error("Failed to initialize SGP4 sensor", retVal);
+
+    //retVal = egk_shtc3_init(&temp_hum, i2c_dev, SHTC3_I2C_ADDR, true);
+    //if (retVal != EGK_OK) return error("Failed to initialize SHTC3 sensor", retVal);
 
     //retVal = egk_shtc3_reset(&sensor);
     //if (retVal != EGK_OK) return error("Failed to reset SHTC3 sensor", retVal);
 
     while (true)
     {
-        float temperature, humidity;
-        retVal = egk_shtc3_measure(&sensor, &temperature, &humidity);
-        if (retVal != EGK_OK) return error("Failed to measure SHTC3 sensor", retVal);
-        printf("Temperature: %.2f C, Humidity: %.2f %%\n", temperature, humidity);
+        //float temperature, humidity;
+        //retVal = egk_shtc3_measure(&sensor, &temperature, &humidity);
+        //if (retVal != EGK_OK) return error("Failed to measure SHTC3 sensor", retVal);
+        //printf("Temperature: %.2f C, Humidity: %.2f %%\n", temperature, humidity);
 
         egk_sleep_ms(1000);
     }
