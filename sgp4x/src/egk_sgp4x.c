@@ -10,9 +10,9 @@
 #define SGP40_CMD_FEATURE_SET                 (0x202F)    // get feature set command
 
 
-int egk_sgp4x_init(egk_sensor_t *sensor, egk_i2c_dev_t *channel, uint8_t addr, bool verify) {
+int egk_sgp4x_init(egk_sensor_t *sensor, egk_i2c_dev_t *channel, bool verify) {
     sensor->channel = channel;
-    sensor->addr = addr;
+    sensor->addr = SGP40_I2C_ADDR;
     sensor->crc = EGK_CRC8_DEFAULT;
 
     if (verify) {
