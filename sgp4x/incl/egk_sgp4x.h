@@ -14,8 +14,7 @@ extern "C" {
 
 
 int egk_sgp4x_init(egk_sensor_t *sensor, egk_i2c_dev_t *channel, bool verify);
-//int egk_sgp4x_measure(egk_sgp4x_t *sensor, float *temperature, float *humidity);
-//int egk_sgp4x_reset(egk_sgp4x_t *sensor);
+//int egk_sgp4x_measure(egk_sensor_t *sensor, float *temperature, float *humidity);
 
 #ifdef __cplusplus
 }

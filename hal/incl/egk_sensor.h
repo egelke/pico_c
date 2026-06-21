@@ -31,7 +31,7 @@ typedef struct {
 
 
 int egk_sensor_init(egk_sensor_t *sensor, egk_i2c_dev_t *channel, uint8_t addr, egk_crc_t crc);
-int egk_sensor_comm(egk_sensor_t *sensor, uint16_t command, uint16_t *req, size_t req_len, uint64_t egk_sleep_us, uint16_t *resp, size_t resp_len);
+int egk_sensor_comm(egk_sensor_t *sensor, uint16_t command, uint16_t *req, size_t req_len, uint64_t sleep_us, uint16_t *resp, size_t resp_len);
 
 
 #ifdef __cplusplus
