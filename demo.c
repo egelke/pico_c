@@ -34,7 +34,7 @@ int main()
 {
     int retVal;
     egk_shtc3_t temp_hum;
-    egk_sgp4x_t voc;
+    egk_sensor_t voc;
     
     stdio_init_all();
     printf("PICO Sensor Kit\n");
