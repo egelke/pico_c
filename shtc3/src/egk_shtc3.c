@@ -24,7 +24,11 @@ int egk_shtc3_init(egk_sensor_t *sensor, egk_i2c_dev_t *channel, bool verify)
         int retVal;
         uint16_t id;
         
+        retVal = egk_sensor_comm(sensor, SHTC3_CMD_WAKEUP, NULL, 0, 300, NULL, 0);
+        if (retVal != EGK_OK) return retVal;
+
         retVal = egk_sensor_comm(sensor, SHTC3_CMD_READID, NULL, 0, 300, &id, 1);
+        egk_sensor_comm(sensor, SHTC3_CMD_SLEEP, NULL, 0, 0, NULL, 0);
         if (retVal != EGK_OK) return retVal;
         if (id != 0x807D) return EGK_ERROR_GENERIC;
     }

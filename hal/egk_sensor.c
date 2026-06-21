@@ -56,11 +56,12 @@ int egk_sensor_write(egk_sensor_t *sensor, uint16_t command, uint16_t *req, size
 }
 
 int egk_sensor_read(egk_sensor_t *sensor, uint16_t *resp, size_t resp_len) {
-    size_t buffer_len = (resp_len * 3); // resp + crc
-    uint8_t *buffer = malloc(buffer_len);
+    if (resp_len == 0) return EGK_OK;
+
+    uint8_t *buffer = calloc(resp_len, 3); // allocate space for response and CRC
     if (!buffer) return EGK_ERROR_GENERIC;
 
-    int retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, buffer_len, false);
+    int retVal = egk_i2c_read(sensor->channel, sensor->addr, buffer, resp_len * 3, false);
     if (retVal != EGK_OK) {
         free(buffer);
         return retVal;
@@ -83,6 +84,7 @@ int egk_sensor_comm(egk_sensor_t *sensor, uint16_t command, uint16_t *req, size_
 
     retVal = egk_sensor_write(sensor, command, req, req_len);
     if (retVal != EGK_OK) return retVal;
+    
 
     egk_sleep_us(sleep_us);
 

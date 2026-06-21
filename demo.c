@@ -44,13 +44,13 @@ int main()
     if (retVal != EGK_OK) return error("Failed to initialize I2C", retVal);
     printf("I2C initialized successfully\n");
 
-    retVal = egk_sgp4x_init(&voc, i2c_dev, true);
-    if (retVal != EGK_OK) return error("Failed to initialize SGP4 sensor", retVal);
-    printf("SGP40 sensor initialized successfully\n");
+    //retVal = egk_sgp4x_init(&voc, i2c_dev, true);
+    //if (retVal != EGK_OK) return error("Failed to initialize SGP4 sensor", retVal);
+    //printf("SGP40 sensor initialized successfully\n");
 
-    //retVal = egk_shtc3_init(&temp_hum, i2c_dev, true);
-    //if (retVal != EGK_OK) return error("Failed to initialize SHTC3 sensor", retVal);
-    //printf("SHTC3 sensor initialized successfully\n");
+    retVal = egk_shtc3_init(&temp_hum, i2c_dev, true);
+    if (retVal != EGK_OK) return error("Failed to initialize SHTC3 sensor", retVal);
+    printf("SHTC3 sensor initialized successfully\n");
 
     //retVal = egk_shtc3_reset(&sensor);
     //if (retVal != EGK_OK) return error("Failed to reset SHTC3 sensor", retVal);
